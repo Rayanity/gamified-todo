@@ -3,10 +3,9 @@ package com.rayan.gamifiedtodo.data.local
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "rewards")
 data class Rewards(
-    // TODO: Ajouter des noms de colonnes plus parlant pour la BDD
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
 
     val title: String,
     val description: String,

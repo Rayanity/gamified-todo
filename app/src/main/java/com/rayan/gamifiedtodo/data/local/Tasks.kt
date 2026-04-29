@@ -1,15 +1,26 @@
 package com.rayan.gamifiedtodo.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(
+    tableName = "tasks",
+    foreignKeys = [
+        ForeignKey(
+            entity = Categories::class,
+            parentColumns = ["id"],
+            childColumns = ["category_id"],
+            onDelete = ForeignKey.SET_NULL
+        )
+    ]
+)
 data class Tasks(
-    // TODO: Ajouter des noms de colonnes plus parlant pour la BDD
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
 
-    //TODO: Transformer en clé étrangère
-    val catagoryId: Int,
+    @ColumnInfo(name = "category_id")
+    val categoryId: Int?,
 
     val title: String,
     val description: String,
@@ -17,10 +28,15 @@ data class Tasks(
     //TODO: Créer l'enum (facile, moyen, difficile)
     val difficulty: Int,
 
-    val deadline: Long,
-    val isCompleted: Boolean,
+    val deadline: Long?,
+
+    @ColumnInfo(name = "is_completed")
+    val isCompleted: Boolean = false,
+
+    @ColumnInfo(name = "is_recurring")
     val isRecurring: Boolean,
 
     //Daily, Weekly ou None
+    @ColumnInfo(name = "recurrence_type")
     val recurrenceType: String,
 )

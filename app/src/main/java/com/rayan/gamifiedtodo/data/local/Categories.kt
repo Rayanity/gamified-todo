@@ -1,14 +1,18 @@
 package com.rayan.gamifiedtodo.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "categories")
 data class Categories(
-    // TODO: Ajouter des noms de colonnes plus parlant pour la BDD
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
 
     val name: String,
-    val icon_name: String,
-    val color_hex: String
+
+    @ColumnInfo(name = "icon_name")
+    val iconName: String,
+
+    @ColumnInfo(name = "color_hex")
+    val colorHex: String
 )

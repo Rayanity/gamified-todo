@@ -1,16 +1,21 @@
 package com.rayan.gamifiedtodo.data.local
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "user_stats")
 data class UserStats(
-    // TODO: Ajouter des noms de colonnes plus parlant pour la BDD
-
-    @PrimaryKey val id: Int,
+    @PrimaryKey val id: Int = 1,
 
     val level: Int,
+
+    @ColumnInfo(name = "current_xp")
     val currentXp: Int,
+
+    @ColumnInfo(name = "total_xp")
     val totalXp: Int,
+
+    @ColumnInfo(name = "gold_coins")
     val goldCoins: Int
 )
